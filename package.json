@@ -1,0 +1,10 @@
+{
+	"dependencies": {
+		"tailwindcss": "^3.4.1",
+		"postcss": "^8.4.33"
+	},
+	"scripts": {
+		"build": "tailwindcss -i ./src/style.css -o ./theme/style.css",
+		"watch": "pnpm build --watch"
+	}
+}

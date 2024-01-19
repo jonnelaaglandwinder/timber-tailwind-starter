@@ -1,0 +1,38 @@
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: wordpress.Dockerfile
+
+    ports:
+      - ${PORT:-8080}:80
+
+    volumes:
+      - wordpress:/var/www/html
+      - ./theme:/var/www/html/wp-content/themes/theme
+
+    environment:
+      WORDPRESS_DB_HOST: maria
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: 1
+
+    depends_on:
+      - maria
+
+  maria:
+    image: mariadb
+
+    volumes:
+      - maria:/var/lib/mysql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+volumes:
+  wordpress:
+  maria:

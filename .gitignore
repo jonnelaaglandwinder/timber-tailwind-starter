@@ -1,0 +1,4 @@
+node_modules
+*.sw[aop]
+
+/theme/style.css
