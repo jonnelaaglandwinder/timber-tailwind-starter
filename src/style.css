@@ -10,6 +10,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@each $s in (1, 2, 3) {
+  h$(s) {
+    font-size: calc(1rem + calc($s * 0.25rem));
+  }
+}
+
 body {
   @apply bg-[var(--tmbr-color-bg)];
   @apply text-[var(--tmbr-color-text)];
@@ -30,7 +36,7 @@ body {
 }
 
 header.header {
-  @apply px-8 mb-8;
+  @apply px-8 mb-4;
   background-color: var(--tmbr-header-bg, transparent);
   color: var(--tmbr-header-color, inherit);
 }
