@@ -11,6 +11,7 @@ class StarterSite extends Site {
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
 		add_action( 'init', array( $this, 'register_menus' ) );
+		add_action( 'init', array( $this, 'register_sidebars' ) );
 
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
@@ -33,6 +34,28 @@ class StarterSite extends Site {
 
 	}
 
+	public function register_sidebars() {
+		register_sidebar(
+			array(
+				'name'          => __( 'Sidebar', 'starter-theme' ),
+				'id'            => 'sidebar-1',
+				'description'   => __( 'Primary sidebar', 'starter-theme' ),
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</div>'
+			)
+		);
+
+		register_sidebar(
+			array(
+				'name'          => __( 'Footer', 'starter-theme' ),
+				'id'            => 'sidebar-2',
+				'description'   => __( 'Footer sidebar', 'starter-theme' ),
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</div>'
+			)
+		);
+	}
+
   public function register_menus() {
     register_nav_menus(
       array(
@@ -50,6 +73,13 @@ class StarterSite extends Site {
 	public function add_to_context( $context ) {
 		$context['menu']  = Timber::get_menu();
 		$context['site']  = $this;
+		$context['sidebar'] = Timber::get_widgets('sidebar-1');
+
+		if (has_custom_logo()) {
+			$custom_logo_id = get_theme_mod( 'custom_logo' );
+			$logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+			$context['logo'] = $logo[0];
+		}
 
 		return $context;
 	}
@@ -106,6 +136,7 @@ class StarterSite extends Site {
 		);
 
 		add_theme_support( 'menus' );
+    add_theme_support( 'custom-logo' );
 	}
 
 	/**

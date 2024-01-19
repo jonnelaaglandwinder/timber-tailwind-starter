@@ -15,7 +15,6 @@
 
 $context          = Timber::context();
 $context['posts'] = Timber::get_posts();
-$content['menu']  = Timber::get_menu('primary');
 
 $templates        = array( 'index.twig' );
 if ( is_home() ) {

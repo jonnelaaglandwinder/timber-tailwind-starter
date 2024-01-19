@@ -2,3 +2,4 @@ node_modules
 *.sw[aop]
 
 /theme/style.css
+/src/custom.css

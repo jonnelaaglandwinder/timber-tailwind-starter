@@ -13,8 +13,14 @@
 			{% block header %}
 				<div class="wrapper">
 					<h1 class="hdr-logo" role="banner">
-						<a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
+						<a class="hdr-logo-link" href="{{site.url}}" rel="home">
+							{% if logo %}
+								<img class="hdr-logo-img" src="{{logo}}" alt="{{site.name}}" />
+							{% endif %}
+							<span>{{site.name}}</span>
+						</a>
 					</h1>
+					<div class="nav-spacer"></div>
 					<nav id="nav-main" class="nav-main" role="navigation">
 						{% include "menu.twig" with {'items': menu.get_items} %}
 					</nav><!-- #nav -->

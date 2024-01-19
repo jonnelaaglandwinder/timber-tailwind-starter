@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.6.0
+
 FROM wordpress:latest
 
 RUN apt-get update

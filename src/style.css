@@ -4,6 +4,73 @@
  * Author: Upstatement and YOU!
  */
 
+@import './custom.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-[var(--tmbr-color-bg)];
+  @apply text-[var(--tmbr-color-text)];
+  @apply font-sans;
+}
+
+.hdr-logo {
+  @apply py-2 box-border;
+  height: var(--tmbr-header-height, 60px);
+}
+
+.hdr-logo-link {
+  @apply flex items-center h-full gap-2;
+}
+
+.hdr-logo-img {
+  @apply h-full w-auto;
+}
+
+header.header {
+  @apply px-8 mb-8;
+  background-color: var(--tmbr-header-bg, transparent);
+  color: var(--tmbr-header-color, inherit);
+}
+
+header.header > .wrapper {
+  @apply flex items-stretch mx-auto gap-4 justify-between;
+  max-width: var(--tmbr-header-width, 1200px);
+}
+
+#content {
+  @apply px-12 w-full mx-auto grid md:grid-cols-[minmax(min-content,_100%)_300px] grid-rows-2;
+  max-width: var(--tmbr-content-width, 1200px);
+}
+
+#footer {
+  @apply px-12 w-full mx-auto;
+  max-width: var(--tmbr-footer-width, 1200px);
+}
+
+.nav-main {
+  @apply flex items-stretch;
+}
+
+.nav-main ul {
+  @apply flex items-stretch;
+}
+
+.menu-item {
+  @apply transition-all;
+  @apply hover:bg-[color-mix(in_srgb,_white_80%,_var(--tmbr-color-primary,_transparent))];
+
+  & > a {
+    @apply flex-1 h-full transition-all flex items-center justify-center;
+  }
+
+  &:hover > a {
+    @apply scale-125;
+  }
+}
+
+.nav-main ul .menu-item {
+  @apply flex items-stretch min-w-32;
+}
