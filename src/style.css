@@ -11,8 +11,8 @@
 @tailwind utilities;
 
 @each $s in (1, 2, 3) {
-  h$(s) {
-    font-size: calc(1rem + calc($s * 0.25rem));
+  .article-h$(s) {
+    font-size: calc(1rem + calc((6 - $s) * 0.125rem));
   }
 }
 
